@@ -1,0 +1,6 @@
+{
+  "name": "Glo VAS Services",
+  "description": "Mobile-first Glo Nigeria VAS landing page to subscribe to Lucky Quiz, Borrow Me Credit, and other value-added services via direct USSD dialer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

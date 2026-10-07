@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Glo VAS Services - Explore Digital Services</title>
+    <meta name="description" content="Explore Glo's exciting digital services. Subscribe instantly to Gaming, Education, Sports, BMC, Caller Tunes, and Lottery via mobile USSD." />
+    
+    <!-- Open Graph & Social Cards -->
+    <meta property="og:title" content="Glo VAS Services" />
+    <meta property="og:description" content="Explore Glo's exciting digital services. One-tap USSD subscription for mobile subscribers." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_NG" />
+    <meta name="theme-color" content="#00A651" />
+    <link rel="icon" type="image/png" href="/glo-logo.png" />
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18494223490"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18494223490');
+    </script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Desktop Preview Indicator (Shown on larger screens) -->
+    <div class="desktop-preview-banner" aria-hidden="true">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+        <path d="M12 18h.01"/>
+      </svg>
+      <span>Mobile Viewport &bull; Tap SUBSCRIBE NOW → to test dialer dispatch</span>
+    </div>
+
+    <!-- Desktop Required Notice Modal -->
+    <div id="desktopModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-icon-badge" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+            <path d="M12 18h.01"/>
+          </svg>
+        </div>
+        <h3 id="modalTitle" class="modal-title">Mobile Device Required</h3>
+        <p class="modal-message-1">USSD subscription is available on mobile devices.</p>
+        <p class="modal-message-2">Please open this page on a mobile phone with a Glo SIM.</p>
+        <button id="modalOkBtn" type="button" class="modal-ok-btn">OK</button>
+      </div>
+    </div>
+
+    <!-- Frequently Asked Questions (FAQs) Modal -->
+    <div id="faqModal" class="modal-overlay faq-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="faqModalTitle" aria-hidden="true">
+      <div class="faq-modal-dialog">
+        <div class="faq-modal-header">
+          <div class="faq-header-title-wrap">
+            <div class="faq-icon-bubble" aria-hidden="true">❓</div>
+            <div>
+              <h2 id="faqModalTitle" class="faq-modal-title">Frequently Asked Questions</h2>
+              <p class="faq-modal-subtitle">Help &amp; Subscription Management</p>
+            </div>
+          </div>
+          <button type="button" id="faqCloseBtn" class="faq-modal-close" aria-label="Close FAQs">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="6"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="faq-modal-scrollable">
+          <!-- Featured Unsubscribe Callout Card -->
+          <div class="faq-unsub-box">
+            <div class="faq-unsub-badge-row">
+              <span class="faq-badge-green">Unsubscribe Guide</span>
+              <span class="faq-badge-code">*305#</span>
+            </div>
+            <h3 class="faq-unsub-heading">How do I unsubscribe from any Glo service?</h3>
+            <p class="faq-unsub-body">
+              To unsubscribe, dial <strong class="faq-code-bold">*305#</strong> from your Glo line and follow the prompts.
+            </p>
+            <div class="faq-unsub-btn-row">
+              <button type="button" class="faq-dial-now-btn" onclick="gloVAS.initiateUSSD('*305#', 'Unsubscribe from Services')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <span>Dial *305# to Unsubscribe</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- FAQ Accordions -->
+          <div class="faq-accordion-group">
+            <details class="faq-item" open>
+              <summary class="faq-item-question">
+                <span>How do I unsubscribe from a service?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-item-answer">
+                To unsubscribe from any active service, simply dial <strong>*305#</strong> on your Glo phone and follow the on-screen prompts. You will see a list of your active subscriptions with the option to opt out instantly.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-item-question">
+                <span>What are Glo Value Added Services (VAS)?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-item-answer">
+                Glo Value Added Services provide mobile entertainment, knowledge, and lifestyle features including mobile gaming tournaments, academic e-learning courses, Afrobeats streaming, live football updates, lottery jackpot draws, caller tunes, and Borrow Me Credit.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-item-question">
+                <span>How do I subscribe to a service?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-item-answer">
+                Select your preferred pack (Daily, Weekly, or Monthly) on any service page, choose Auto-Renewal or One-off, and tap <strong>SUBSCRIBE NOW</strong> to dial the code directly from your phone.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-item-question">
+                <span>What is the difference between Auto-Renewal and One-off?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-item-answer">
+                <strong>Auto-Renewal:</strong> Your pack automatically renews upon expiration provided you have sufficient airtime balance.<br/>
+                <strong>One-off:</strong> The subscription expires naturally without any automatic deduction.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-item-question">
+                <span>How do I borrow emergency airtime or data?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-item-answer">
+                Visit the <strong>Borrow Me Credit</strong> section. Dial <strong>*303*1#</strong> to borrow emergency airtime or <strong>*303*2#</strong> to borrow data. The borrowed credit is deducted upon your next recharge.
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-item-question">
+                <span>How can I reach Glo Customer Care?</span>
+                <span class="faq-toggle-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-item-answer">
+                You can dial <strong>*305#</strong> free of charge from any Glo SIM to manage all your services, or contact Glo Customer Support.
+              </div>
+            </details>
+          </div>
+        </div>
+
+        <div class="faq-modal-footer">
+          <button type="button" id="faqDoneBtn" class="faq-modal-action-btn">Close FAQs</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Master Mobile Application Frame -->
+    <main class="app-container">
+      <!-- Top Brand Header with Menu, Logo, Brand text, and Live Badge -->
+      <header class="glo-header">
+        <div class="glo-header-top">
+          <div class="glo-header-left">
+            <button id="menuToggleBtn" type="button" class="header-menu-btn" aria-label="Open navigation menu">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+            </button>
+            <a href="#home" class="glo-brand-lockup" onclick="gloVAS.renderHomeView(); return false;" aria-label="Glo VAS Services Home">
+              <div class="glo-logo-container">
+                <img src="/glo-logo.png" alt="Glo" class="glo-official-logo" width="44" height="44" />
+              </div>
+              <div class="glo-header-text">
+                <h1 class="glo-header-brand-title">GLO VAS SERVICES</h1>
+                <p class="glo-header-subtitle">Explore exciting digital services</p>
+              </div>
+            </a>
+          </div>
+          <div class="glo-network-pill" aria-label="Network Status: Live">
+            <span class="network-pulse-dot" aria-hidden="true"></span>
+            <span>Live</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Side Navigation Drawer -->
+      <div id="sideDrawerOverlay" class="drawer-overlay" aria-hidden="true"></div>
+      <aside id="sideDrawer" class="side-drawer" aria-label="Quick Navigation">
+        <div class="drawer-header">
+          <div class="drawer-brand">
+            <img src="/glo-logo.png" alt="Glo" width="32" height="32" style="border-radius:50%;" />
+            <span class="drawer-title">GLO VAS SERVICES</span>
+          </div>
+          <button id="drawerCloseBtn" type="button" class="drawer-close-btn" aria-label="Close menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="6"/>
+            </svg>
+          </button>
+        </div>
+        <div class="drawer-body">
+          <p class="drawer-section-label">All Categories</p>
+          <nav class="drawer-nav" id="drawerNavLinks">
+            <!-- Dynamically populated -->
+          </nav>
+          <div class="drawer-faq-shortcut-wrap">
+            <button type="button" class="drawer-faq-shortcut-btn" onclick="gloVAS.openFaqModal(); gloVAS.closeDrawer();">
+              <span class="drawer-faq-icon" aria-hidden="true">❓</span>
+              <div class="drawer-faq-text">
+                <span class="drawer-faq-main">FAQs &amp; Help</span>
+                <span class="drawer-faq-sub">Unsubscribe guide (*305#)</span>
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="drawer-footer-card">
+            <p style="font-size:12px;font-weight:700;color:#0B1911;margin-bottom:4px;">Customer Support</p>
+            <p style="font-size:11.5px;color:#526359;margin-bottom:8px;">Dial *305# free from any Glo SIM</p>
+            <button type="button" class="drawer-call-btn" onclick="gloVAS.initiateUSSD('*305#', 'Customer Support')">Dial *305#</button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Horizontal Scrolling Hero Carousel (Home View) -->
+      <section id="heroBanner" class="glo-hero-carousel-container" aria-label="Featured Highlights">
+        <div class="hero-carousel-track" id="heroCarouselTrack">
+          <!-- Slide 1: More Entertainment, More Learning, More for You (Dark Green) -->
+          <div class="hero-carousel-slide hero-slide-1" id="heroSlide1">
+            <div class="glo-hero-grid">
+              <div class="glo-hero-left">
+                <h2 class="hero-title-slide1">
+                  More Entertainment<br/>
+                  More Learning<br/>
+                  <span class="highlight-yellow">More for You</span>
+                </h2>
+                <p class="hero-desc-slide1">Subscribe to gaming, e-learning, Afrobeats, sports and emergency credit — all on your phone.</p>
+                <button type="button" class="hero-cta-btn-white" onclick="scrollToCategories()">
+                  <span>Learn More</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+              <div class="glo-hero-right" aria-hidden="true">
+                <svg class="hero-phone-svg" viewBox="0 0 210 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Ambient glowing rings & particles -->
+                  <circle cx="120" cy="115" r="78" stroke="#4ADE80" stroke-width="2.5" stroke-opacity="0.65" stroke-dasharray="6 4" fill="none"/>
+                  <circle cx="120" cy="115" r="92" stroke="#86EFAC" stroke-width="1.5" stroke-opacity="0.4" fill="none"/>
+                  <ellipse cx="125" cy="115" rx="70" ry="75" fill="#22C55E" fill-opacity="0.25" filter="blur(22px)"/>
+                  
+                  <!-- Subscriber with Headphones & Smartphone Silhouette & Glow -->
+                  <g transform="translate(70, 48)">
+                    <!-- Neon Headband -->
+                    <path d="M22 28 C18 10, 68 8, 66 28" fill="none" stroke="#A3E635" stroke-width="4.5" stroke-linecap="round"/>
+                    <!-- Headphone Earcups -->
+                    <rect x="15" y="24" width="10" height="20" rx="5" fill="#84CC16" stroke="#FFFFFF" stroke-width="1.2"/>
+                    <rect x="63" y="24" width="10" height="20" rx="5" fill="#84CC16" stroke="#FFFFFF" stroke-width="1.2"/>
+                    <!-- Face & Smile Silhouette -->
+                    <circle cx="44" cy="38" r="22" fill="#D97706"/>
+                    <path d="M36 44 Q44 54 52 44" fill="#FFFFFF" stroke="#B45309" stroke-width="1.5"/>
+                    <!-- Hair -->
+                    <ellipse cx="44" cy="22" rx="20" ry="12" fill="#1C1917"/>
+                    <!-- Shoulders & Shirt -->
+                    <path d="M12 92 C18 64, 70 64, 76 92 Z" fill="#15803D" stroke="#22C55E" stroke-width="1.5"/>
+                    <!-- Hands holding Smartphone -->
+                    <rect x="34" y="66" width="20" height="34" rx="4" fill="#0F172A" stroke="#38BDF8" stroke-width="1.8"/>
+                    <rect x="37" y="70" width="14" height="26" rx="2" fill="#38BDF8" fill-opacity="0.75"/>
+                    <ellipse cx="30" cy="80" rx="5" ry="8" fill="#D97706"/>
+                    <ellipse cx="58" cy="80" rx="5" ry="8" fill="#D97706"/>
+                  </g>
+
+                  <!-- 5 Floating 3D Circular Badges matching Image 1 -->
+                  <!-- Badge 1: Music Purple (Top Center) -->
+                  <g transform="translate(96, 12)" filter="drop-shadow(0 4px 8px rgba(147, 51, 234, 0.45))">
+                    <circle cx="18" cy="18" r="18" fill="url(#gradPurpleBadge)"/>
+                    <circle cx="18" cy="18" r="17.2" stroke="#FFFFFF" stroke-width="1.4" stroke-opacity="0.7"/>
+                    <path d="M15 12v10a2.5 2.5 0 1 1-2.5-2.5h2.5V12l8-2v10a2.5 2.5 0 1 1-2.5-2.5h2.5V10l-8 2z" fill="#FFFFFF"/>
+                  </g>
+
+                  <!-- Badge 2: Graduation Cap Gold (Top Right) -->
+                  <g transform="translate(152, 22)" filter="drop-shadow(0 4px 8px rgba(234, 179, 8, 0.45))">
+                    <circle cx="18" cy="18" r="18" fill="url(#gradGoldBadge)"/>
+                    <circle cx="18" cy="18" r="17.2" stroke="#FFFFFF" stroke-width="1.4" stroke-opacity="0.7"/>
+                    <polygon points="18,10 8,15 18,20 28,15" fill="#064E3B"/>
+                    <path d="M11 17v5c0 2 3.5 3.5 7 3.5s7-1.5 7-3.5v-5" fill="none" stroke="#064E3B" stroke-width="1.8"/>
+                    <line x1="25" y1="16" x2="25" y2="23" stroke="#064E3B" stroke-width="1.5"/>
+                  </g>
+
+                  <!-- Badge 3: Game Controller Green (Center Left) -->
+                  <g transform="translate(36, 68)" filter="drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3))">
+                    <circle cx="19" cy="19" r="19" fill="#22C55E"/>
+                    <circle cx="19" cy="19" r="18.2" stroke="#FFFFFF" stroke-width="1.4" stroke-opacity="0.8"/>
+                    <!-- Dark Gamepad -->
+                    <path d="M12 18a3.5 3.5 0 0 1 3.5-3.5h5a3.5 3.5 0 0 1 3.5 3.5v3a2 2 0 0 1-3.2 1.3L19 20h-2l-1.8 2.3A2 2 0 0 1 12 21v-3z" fill="#111827"/>
+                    <line x1="16" y1="16" x2="16" y2="20" stroke="#38BDF8" stroke-width="1.4" stroke-linecap="round"/>
+                    <line x1="14" y1="18" x2="18" y2="18" stroke="#38BDF8" stroke-width="1.4" stroke-linecap="round"/>
+                    <circle cx="21" cy="17" r="0.9" fill="#EF4444"/>
+                    <circle cx="22.5" cy="18.5" r="0.9" fill="#FBBF24"/>
+                  </g>
+
+                  <!-- Badge 4: Gift Box Amber (Bottom Left) -->
+                  <g transform="translate(42, 136)" filter="drop-shadow(0 4px 10px rgba(245, 158, 11, 0.45))">
+                    <circle cx="18" cy="18" r="18" fill="url(#gradGoldBadge)"/>
+                    <circle cx="18" cy="18" r="17.2" stroke="#FFFFFF" stroke-width="1.4" stroke-opacity="0.7"/>
+                    <!-- 3D Gift Box with Red Ribbon -->
+                    <rect x="10" y="14" width="16" height="13" rx="1.5" fill="#F59E0B"/>
+                    <rect x="8" y="11" width="20" height="4" rx="1" fill="#FEF08A"/>
+                    <rect x="16" y="11" width="4" height="16" fill="#DC2626"/>
+                    <path d="M14 9c-1.5-2-4 0-1 2h5c3-2 .5-4-1-2-1.2 1-2.5 1-3 0z" fill="#DC2626"/>
+                  </g>
+
+                  <!-- Badge 5: Soccer Ball (Bottom Right) -->
+                  <g transform="translate(156, 142)" filter="drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25))">
+                    <circle cx="17" cy="17" r="17" fill="#FFFFFF"/>
+                    <circle cx="17" cy="17" r="16.5" stroke="#E5E7EB" stroke-width="1"/>
+                    <polygon points="17,11 12,15 14,20 20,20 22,15" fill="#111827"/>
+                    <line x1="17" y1="11" x2="17" y2="6" stroke="#111827" stroke-width="1.1"/>
+                    <line x1="12" y1="15" x2="7" y2="13" stroke="#111827" stroke-width="1.1"/>
+                    <line x1="14" y1="20" x2="10" y2="25" stroke="#111827" stroke-width="1.1"/>
+                    <line x1="20" y1="20" x2="24" y2="25" stroke="#111827" stroke-width="1.1"/>
+                    <line x1="22" y1="15" x2="27" y2="13" stroke="#111827" stroke-width="1.1"/>
+                  </g>
+
+                  <!-- Gradients for Slide 1 -->
+                  <defs>
+                    <linearGradient id="gradPurpleBadge" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#C084FC"/>
+                      <stop offset="100%" stop-color="#7E22CE"/>
+                    </linearGradient>
+                    <linearGradient id="gradGoldBadge" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FDE047"/>
+                      <stop offset="100%" stop-color="#D97706"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Your World of Digital Services (Light Mint) -->
+          <div class="hero-carousel-slide hero-slide-2" id="heroSlide2">
+            <div class="glo-hero-grid">
+              <div class="glo-hero-left">
+                <h2 id="heroTitle" class="glo-hero-title-new">Your World<br/>of Digital Services</h2>
+                <p class="glo-hero-desc-new">Gaming, learning, music, sports, lottery and more — all in one place.</p>
+                <button type="button" id="heroGetStartedBtn" class="hero-cta-btn" onclick="scrollToCategories()">
+                  <span>Get Started</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </div>
+              <div class="glo-hero-right" aria-hidden="true">
+                <svg class="hero-phone-svg" viewBox="0 0 210 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Soft ambient backdrop aura -->
+                  <ellipse cx="140" cy="115" rx="75" ry="85" fill="#A7F3D0" fill-opacity="0.45" filter="blur(18px)"/>
+                  
+                  <!-- Tilted Smartphone Mockup -->
+                  <g transform="translate(130, 115) rotate(11) translate(-65, -95)">
+                    <!-- Phone Shadow -->
+                    <rect x="6" y="8" width="118" height="186" rx="24" fill="#047857" fill-opacity="0.18" filter="blur(8px)"/>
+                    
+                    <!-- Phone Outer Case (Dark Titanium Bezel) -->
+                    <rect x="0" y="0" width="118" height="184" rx="22" fill="#1F2937" stroke="#374151" stroke-width="3"/>
+                    <!-- Speaker notch -->
+                    <rect x="44" y="6" width="30" height="4" rx="2" fill="#111827"/>
+                    <circle cx="82" cy="8" r="2" fill="#4B5563"/>
+                    
+                    <!-- Screen Glass -->
+                    <rect x="6" y="14" width="106" height="162" rx="16" fill="#F8FAFC"/>
+                    
+                    <!-- Screen App Grid -->
+                    <rect x="14" y="24" width="42" height="38" rx="8" fill="url(#gradRed)" filter="drop-shadow(0 2px 4px rgba(239, 68, 68, 0.25))"/>
+                    <path d="M38 32v15a3 3 0 1 1-3-3h3V32l-9 2v15a3 3 0 1 1-3-3h3V34l9-2z" fill="#FFFFFF" transform="scale(0.7) translate(14, 18)"/>
+                    
+                    <rect x="62" y="24" width="42" height="38" rx="8" fill="url(#gradBlue)" filter="drop-shadow(0 2px 4px rgba(59, 130, 246, 0.25))"/>
+                    <path d="M86 32v15a3 3 0 1 1-3-3h3V32l-9 2v15a3 3 0 1 1-3-3h3V34l9-2z" fill="#FFFFFF" transform="scale(0.7) translate(48, 18)"/>
+                    
+                    <rect x="14" y="70" width="42" height="38" rx="8" fill="url(#gradPurple)" filter="drop-shadow(0 2px 4px rgba(168, 85, 247, 0.25))"/>
+                    <path d="M38 78v15a3 3 0 1 1-3-3h3V78l-9 2v15a3 3 0 1 1-3-3h3V80l9-2z" fill="#FFFFFF" transform="scale(0.7) translate(14, 52)"/>
+                    
+                    <rect x="62" y="70" width="42" height="38" rx="8" fill="url(#gradGreen)" filter="drop-shadow(0 2px 4px rgba(16, 185, 129, 0.25))"/>
+                    <polygon points="83,78 70,84 83,90 96,84" fill="#FFFFFF"/>
+                    <path d="M74,86v6c0,2.5 4,4.5 9,4.5s9,-2 9,-4.5v-6" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
+
+                    <rect x="14" y="116" width="42" height="38" rx="8" fill="url(#gradTeal)" filter="drop-shadow(0 2px 4px rgba(20, 184, 166, 0.25))"/>
+                    <rect x="25" y="128" width="20" height="14" rx="4" fill="#FFFFFF"/>
+                    
+                    <rect x="62" y="116" width="42" height="38" rx="8" fill="url(#gradAmber)" filter="drop-shadow(0 2px 4px rgba(245, 158, 11, 0.25))"/>
+                    <circle cx="83" cy="135" r="7" fill="#FFFFFF"/>
+                  </g>
+
+                  <!-- Floating 3D Badges -->
+                  <g transform="translate(68, 48)" filter="drop-shadow(0 5px 10px rgba(14, 165, 233, 0.35))">
+                    <circle cx="19" cy="19" r="19" fill="url(#badgeCyan)"/>
+                    <circle cx="19" cy="19" r="18" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.6"/>
+                    <path d="M12 18a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v3a2 2 0 0 1-3.5 1.3L20 20h-2l-2.5 2.3A2 2 0 0 1 12 21v-3z" fill="#FFFFFF"/>
+                    <line x1="16" y1="16" x2="16" y2="20" stroke="#0284C7" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="14" y1="18" x2="18" y2="18" stroke="#0284C7" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="21" cy="17" r="1" fill="#0284C7"/>
+                    <circle cx="23" cy="19" r="1" fill="#0284C7"/>
+                  </g>
+
+                  <g transform="translate(52, 98)" filter="drop-shadow(0 5px 10px rgba(0, 0, 0, 0.18))">
+                    <circle cx="18" cy="18" r="18" fill="#FFFFFF"/>
+                    <circle cx="18" cy="18" r="17.5" stroke="#E5E7EB" stroke-width="1"/>
+                    <polygon points="18,12 13,16 15,21 21,21 23,16" fill="#111827"/>
+                    <line x1="18" y1="12" x2="18" y2="6" stroke="#111827" stroke-width="1.2"/>
+                    <line x1="13" y1="16" x2="7" y2="14" stroke="#111827" stroke-width="1.2"/>
+                    <line x1="15" y1="21" x2="11" y2="27" stroke="#111827" stroke-width="1.2"/>
+                    <line x1="21" y1="21" x2="25" y2="27" stroke="#111827" stroke-width="1.2"/>
+                    <line x1="23" y1="16" x2="29" y2="14" stroke="#111827" stroke-width="1.2"/>
+                  </g>
+
+                  <g transform="translate(56, 150)" filter="drop-shadow(0 5px 12px rgba(249, 115, 22, 0.4))">
+                    <circle cx="20" cy="20" r="20" fill="url(#badgeOrange)"/>
+                    <circle cx="20" cy="20" r="19" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.6"/>
+                    <rect x="11" y="16" width="18" height="14" rx="2" fill="#FFFFFF"/>
+                    <rect x="9" y="13" width="22" height="4" rx="1.5" fill="#FEF08A"/>
+                    <rect x="18" y="13" width="4" height="17" fill="#F97316"/>
+                    <path d="M16 11c-1.5-2-4 0-1 2h5c3-2 .5-4-1-2-1.2 1-2.5 1-3 0z" fill="#FEF08A"/>
+                  </g>
+
+                  <g transform="translate(150, 156)" filter="drop-shadow(0 5px 12px rgba(234, 179, 8, 0.45))">
+                    <circle cx="21" cy="21" r="21" fill="url(#badgeGold)"/>
+                    <circle cx="21" cy="21" r="20" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.6"/>
+                    <polygon points="21,12 8,18 21,24 34,18" fill="#FFFFFF"/>
+                    <path d="M12,20v7c0,2.8 4,5 9,5s9,-2.2 9,-5v-7" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                    <path d="M30 19v8" stroke="#FEF08A" stroke-width="1.8" stroke-linecap="round"/>
+                    <circle cx="30" cy="28" r="1.5" fill="#FEF08A"/>
+                  </g>
+
+                  <!-- Gradients for Slide 2 -->
+                  <defs>
+                    <linearGradient id="gradRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#F87171"/>
+                      <stop offset="100%" stop-color="#DC2626"/>
+                    </linearGradient>
+                    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#60A5FA"/>
+                      <stop offset="100%" stop-color="#2563EB"/>
+                    </linearGradient>
+                    <linearGradient id="gradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#C084FC"/>
+                      <stop offset="100%" stop-color="#7E22CE"/>
+                    </linearGradient>
+                    <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#34D399"/>
+                      <stop offset="100%" stop-color="#059669"/>
+                    </linearGradient>
+                    <linearGradient id="gradTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#2DD4BF"/>
+                      <stop offset="100%" stop-color="#0F766E"/>
+                    </linearGradient>
+                    <linearGradient id="gradAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FBBF24"/>
+                      <stop offset="100%" stop-color="#D97706"/>
+                    </linearGradient>
+                    <linearGradient id="badgeCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#38BDF8"/>
+                      <stop offset="100%" stop-color="#0284C7"/>
+                    </linearGradient>
+                    <linearGradient id="badgeOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FB923C"/>
+                      <stop offset="100%" stop-color="#EA580C"/>
+                    </linearGradient>
+                    <linearGradient id="badgeGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FBBF24"/>
+                      <stop offset="100%" stop-color="#CA8A04"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Navigation Controls -->
+        <button type="button" class="carousel-nav-btn prev" id="carouselPrevBtn" aria-label="Previous slide">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="carousel-nav-btn next" id="carouselNextBtn" aria-label="Next slide">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Carousel Indicators (Dots) -->
+        <div class="carousel-dots-wrapper" id="carouselDots" role="tablist" aria-label="Carousel slide indicators">
+          <button type="button" class="carousel-dot active" data-slide-index="0" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+          <button type="button" class="carousel-dot" data-slide-index="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+        </div>
+      </section>
+
+      <!-- Compact Search Bar (Home View) -->
+      <div id="searchContainer" class="search-container">
+        <div class="search-input-wrapper">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input 
+            type="search" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Search services (e.g. Brain Tease, Credit, Tunes)..." 
+            aria-label="Search VAS categories or services"
+            autocomplete="off"
+          />
+          <button id="searchClearBtn" type="button" class="search-clear-btn" aria-label="Clear search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Detail Sticky Subheader (Category View only) -->
+      <nav id="categoryViewHeader" class="category-view-header" style="display: none;" aria-label="Category Navigation">
+        <button id="backToServicesBtn" type="button" class="back-to-services-btn" aria-label="Back to all services">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+          <span>Back to Services</span>
+        </button>
+
+        <div class="category-title-strip">
+          <div id="categoryTitleIconBox" class="category-title-icon-box" aria-hidden="true"></div>
+          <div class="category-title-text">
+            <h2 id="categoryMainHeading" class="category-main-heading">Category Name</h2>
+            <span id="categoryServicesCount" class="category-services-count">0 Services Available</span>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Dynamic Content Container -->
+      <section class="main-content">
+        <!-- 1. Home View Container -->
+        <div id="homeView">
+          <div class="section-label-bar-new" id="categoriesSection">
+            <div class="section-label-left">
+              <span class="section-indicator-bar" aria-hidden="true"></span>
+              <h2 class="section-heading-new">Categories</h2>
+            </div>
+            <span class="section-badge-new">8 Categories</span>
+          </div>
+
+          <!-- 2-Column Categories Grid -->
+          <div id="categoriesGrid" class="categories-grid-new" aria-live="polite">
+            <!-- Dynamically populated via script.js -->
+          </div>
+        </div>
+
+        <!-- 2. Category Detail View Container -->
+        <div id="categoryView" style="display: none;">
+          <div class="section-label-bar">
+            <div class="section-label">
+              <span class="section-indicator" aria-hidden="true"></span>
+              <span>Available Services</span>
+            </div>
+          </div>
+
+          <!-- Services List Populated Dynamically -->
+          <div id="servicesListContainer" class="services-list" aria-live="polite">
+            <!-- Dynamically populated via script.js -->
+          </div>
+
+          <!-- Single Back to Categories Button -->
+          <div class="category-bottom-action">
+            <button type="button" class="category-single-back-btn js-nav-back" aria-label="Return to all categories">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"/>
+                <polyline points="12 19 5 12 12 5"/>
+              </svg>
+              <span>Back to Categories</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Global Compact Footer -->
+      <footer class="glo-footer-new">
+        <div class="footer-row-main">
+          <div class="footer-dial-info" role="button" tabindex="0" onclick="gloVAS.initiateUSSD('*305#', 'Customer Support')" style="cursor: pointer;" title="Dial *305# Customer Support">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00A651" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>Dial <strong class="footer-green-accent">*305#</strong> from your Glo line</span>
+          </div>
+          <nav class="footer-links-inline" aria-label="Legal footer links">
+            <a href="#terms" class="footer-link-v2" onclick="gloVAS.openInfoModal('terms'); return false;">Terms</a>
+            <span class="footer-divider-pipe">|</span>
+            <a href="#privacy" class="footer-link-v2" onclick="gloVAS.openInfoModal('privacy'); return false;">Privacy</a>
+            <span class="footer-divider-pipe">|</span>
+            <a href="#faqs" class="footer-link-v2" id="footerFaqLink" onclick="gloVAS.openFaqModal(); return false;">FAQs</a>
+          </nav>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Main JavaScript Logic -->
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
